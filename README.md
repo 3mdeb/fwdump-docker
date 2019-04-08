@@ -1,5 +1,7 @@
 # fwdump-docker
 
+[![Build Status](https://travis-ci.com/3mdeb/fwdump-docker.svg?branch=master)](https://travis-ci.com/3mdeb/fwdump-docker)
+
 Dockerized utility for retrieving various firmware related information from computers.
 
 Inspired by [coreboot Motherboard Porting Guide](https://www.coreboot.org/Motherboard_Porting_Guide)
