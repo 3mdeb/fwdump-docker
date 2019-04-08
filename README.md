@@ -4,7 +4,6 @@ Dockerized utility for retrieving various firmware related information from comp
 
 Inspired by [coreboot Motherboard Porting Guide](https://www.coreboot.org/Motherboard_Porting_Guide)
 
-
 ## Pull docker image
 
 ```
@@ -27,7 +26,6 @@ user/group with UID/GID 1000.
 ```
 ./build.sh
 ```
-
 
 ## Release Docker image
 
