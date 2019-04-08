@@ -61,6 +61,8 @@ RUN apt-get update && apt-get install -y \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
+USER root
+
 RUN mkdir -p /home/fwdump && cd /home/fwdump
 
 WORKDIR /home/fwdump
@@ -89,12 +91,6 @@ RUN cd /home/fwdump/flashrom && \
 	git checkout v1.1-rc1 && \
 	make install 
 
-COPY scripts/getlogs.sh /home/fwdump
+COPY scripts/getlogs.sh /usr/bin/getlogs
 
-VOLUME . /home/fwdump
-
-USER root
-WORKDIR /home/fwdump
-
-ENTRYPOINT [ "/home/fwdump/getlogs.sh" ]
 
