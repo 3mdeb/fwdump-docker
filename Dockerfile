@@ -89,7 +89,12 @@ RUN cd /home/fwdump/flashrom && \
 	git checkout v1.1-rc1 && \
 	make install 
 
-RUN cd /home/fwdump
+COPY scripts/getlogs.sh /home/fwdump
+
+VOLUME . /home/fwdump
 
 USER root
 WORKDIR /home/fwdump
+
+ENTRYPOINT [ "/home/fwdump/getlogs.sh" ]
+
