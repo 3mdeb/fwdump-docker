@@ -1,0 +1,3 @@
+DOCKER_USER_NAME="3mdeb"
+DOCKER_IMAGE_NAME="fwdump-docker"
+
