@@ -14,6 +14,7 @@ msrtool > logs/msrtool.log 2> logs/msrtool.err.log
 dmidecode > logs/dmidecode.log 2> logs/dmidecode.err.log
 biosdecode > logs/biosdecode.log 2> logs/biosdecode.err.log
 nvramtool -x > logs/nvramtool.log 2> logs/nvramtool.err.log
+inteltool -a > logs/inteltool.log 2> logs/inteltool.err.log
 dmesg > logs/dmesg.log 2> logs/dmesg.err.log
 acpidump > logs/acpidump.log 2> logs/acpidump.err.log
 for x in /sys/class/sound/card0/hw*; do cat "$x/init_pin_configs" > logs/pin_"$(basename "$x")"; done
