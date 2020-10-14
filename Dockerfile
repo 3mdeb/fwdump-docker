@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	dmidecode \
 	git \
+	golang \
 	make \
 	gcc \
 	g++ \
@@ -67,7 +68,8 @@ RUN mkdir -p /home/fwdump && cd /home/fwdump
 
 WORKDIR /home/fwdump
 
-RUN git clone https://review.coreboot.org/coreboot.git
+RUN git clone https://review.coreboot.org/coreboot.git && \
+	git checkout c004ae565609d61dd1de739953f64060c2350fb3
 
 RUN git clone https://github.com/flashrom/flashrom.git
 
@@ -85,6 +87,9 @@ RUN cd /home/fwdump/coreboot/util/msrtool && \
 	make install
 
 RUN cd /home/fwdump/coreboot/util/nvramtool && \
+	make install
+
+RUN cd /home/fwdump/coreboot/util/intelp2m && \
 	make install
 
 RUN cd /home/fwdump/flashrom && \
