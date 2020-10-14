@@ -94,7 +94,7 @@ RUN cd /home/fwdump/coreboot/util/intelp2m && \
 	make && cp intelp2m /usr/local/sbin/
 
 RUN cd /home/fwdump/flashrom && \
-	git checkout v1.1-rc1 && \
+	git checkout v1.2 && \
 	make install 
 
 COPY scripts/getlogs.sh /usr/bin/getlogs
