@@ -37,15 +37,25 @@ echo "Dumping I/O ports..."
 cat /proc/ioports > logs/ioports.log 2> logs/ioports.err.log
 echo "Dumping input bus types..."
 cat /sys/class/input/input*/id/bustype > logs/input_bustypes.log
-echo "Tryign to read firmware image with flashrom..."
+echo "Trying to read firmware image with flashrom..."
 flashrom -V -p internal:laptop=force_I_want_a_brick -r logs/rom.bin > logs/flashrom_read.log 2> logs/flashrom_read.err.log
 
 echo "Decompiling ACPI tables..."
 mkdir -p logs/acpi && cd logs/acpi
-acpixtract -a ../acpidump.log
-iasl -d *.dat
+acpixtract -a ../acpidump.log &>/dev/null
+iasl -d *.dat &>/dev/null
 cd ../..
 
+filename="$(dmidecode -s system-manufacturer)"
+filename+=" $(dmidecode -s system-product-name)"
+filename+=" $(dmidecode -s bios-version)"
+
+filename="${filename// /_}"
+
+echo "Creating archive with logs..."
 chown -R 1000:1000 logs/ && chmod 755 logs
-tar -zcvf fwlogs.tar.gz logs/* && chmod 755 fwlogs.tar.gz && chown 1000:1000 fwlogs.tar.gz
+tar -zcf "$filename.tar.gz" logs/* && chmod 755 "$filename.tar.gz" && chown 1000:1000 "$filename.tar.gz"
+rm -rf logs
+
+echo "Done! Logs saved to: $filename.tar.gz"
 
