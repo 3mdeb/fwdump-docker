@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:buster
 MAINTAINER Piotr Król <piotr.krol@3mdeb.com>
 
 # TBD: I'm not sure if this can replace dpkg-reconfigure
@@ -47,6 +47,7 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	dmidecode \
 	git \
+	golang \
 	make \
 	gcc \
 	g++ \
@@ -67,7 +68,9 @@ RUN mkdir -p /home/fwdump && cd /home/fwdump
 
 WORKDIR /home/fwdump
 
-RUN git clone https://review.coreboot.org/coreboot.git
+RUN git clone https://review.coreboot.org/coreboot.git && \
+	cd /home/fwdump/coreboot && \
+	git checkout c004ae565609d61dd1de739953f64060c2350fb3
 
 RUN git clone https://github.com/flashrom/flashrom.git
 
@@ -87,8 +90,11 @@ RUN cd /home/fwdump/coreboot/util/msrtool && \
 RUN cd /home/fwdump/coreboot/util/nvramtool && \
 	make install
 
+RUN cd /home/fwdump/coreboot/util/intelp2m && \
+	make && cp intelp2m /usr/local/sbin/
+
 RUN cd /home/fwdump/flashrom && \
-	git checkout v1.1-rc1 && \
+	git checkout v1.2 && \
 	make install 
 
 COPY scripts/getlogs.sh /usr/bin/getlogs
