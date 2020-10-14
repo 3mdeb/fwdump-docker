@@ -31,8 +31,8 @@ Otherwise some of the logs may not be obtained. To ensure the logs can be
 accessed, the `getlogs.sh` script changes the ownership and file permissions to
 user/group with UID/GID 1000.
 
-The result is placed in the `$PWD` directory inside the `logs` directory and
-additionally packed into a tarball named `fwlogs.tar.gz`.
+The result is placed in the `$PWD` directory packed into a tarball named:
+`<system-manufacturer>_<system-product-name>_<bios-version>.tar.gz`.
 
 ## Build Docker image
 
