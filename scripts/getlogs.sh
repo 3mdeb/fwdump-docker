@@ -12,8 +12,8 @@ echo "Dumping USB devices and topology..."
 lsusb -vvv > logs/lsusb.log 2> logs/lsusb.err.log
 echo "Dumping Super I/O configuration..."
 superiotool -deV > logs/superiotool.log 2> logs/superiotool.err.log
-echo "Dumping Embedded Controller configuration..."
-ectool -i > logs/ectool.log 2> logs/ectool.err.log
+echo "Dumping Embedded Controller configuration (this may take a while if EC is not present)..."
+ectool -ip > logs/ectool.log 2> logs/ectool.err.log
 echo "Dumping MSRs..."
 msrtool > logs/msrtool.log 2> logs/msrtool.err.log
 echo "Dumping SMBIOS tables..."
