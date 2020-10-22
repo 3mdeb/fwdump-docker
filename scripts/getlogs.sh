@@ -25,10 +25,10 @@ nvramtool -x > logs/nvramtool.log 2> logs/nvramtool.err.log
 echo "Dumping Intel configuration registers..."
 inteltool -a > logs/inteltool.log 2> logs/inteltool.err.log
 echo "Generating GPIO configuration C header files for coreboot..."
-intelp2m intelp2m -file logs/inteltool.log -fld cb -i -p snr -o logs/gpio_snr.h > logs/intelp2m.log 2> logs/intelp2m.err.log
-intelp2m intelp2m -file logs/inteltool.log -fld cb -i -p cnl -o logs/gpio_cnl.h >> logs/intelp2m.log 2>> logs/intelp2m.err.log
-intelp2m intelp2m -file logs/inteltool.log -fld cb -i -p apl -o logs/gpio_apl.h >> logs/intelp2m.log 2>> logs/intelp2m.err.log
-intelp2m intelp2m -file logs/inteltool.log -fld cb -i -p lbg -o logs/gpio_lbg.h >> logs/intelp2m.log 2>> logs/intelp2m.err.log
+intelp2m -file logs/inteltool.log -fld cb -i -p snr -o logs/gpio_snr.h > logs/intelp2m.log 2> logs/intelp2m.err.log
+intelp2m -file logs/inteltool.log -fld cb -i -p cnl -o logs/gpio_cnl.h >> logs/intelp2m.log 2>> logs/intelp2m.err.log
+intelp2m -file logs/inteltool.log -fld cb -i -p apl -o logs/gpio_apl.h >> logs/intelp2m.log 2>> logs/intelp2m.err.log
+intelp2m -file logs/inteltool.log -fld cb -i -p lbg -o logs/gpio_lbg.h >> logs/intelp2m.log 2>> logs/intelp2m.err.log
 echo "Dumping kernel dmesg..."
 dmesg > logs/dmesg.log 2> logs/dmesg.err.log
 echo "Dumping dumpign ACPI tables..."
