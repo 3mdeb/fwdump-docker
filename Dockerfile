@@ -93,9 +93,10 @@ RUN cd /home/fwdump/coreboot/util/nvramtool && \
 RUN cd /home/fwdump/coreboot/util/intelp2m && \
 	make && cp intelp2m /usr/local/sbin/
 
+# flashrom with Tiger Lake support
 RUN cd /home/fwdump/flashrom && \
-	git checkout v1.2 && \
-	make install 
+	git checkout 93b01904db607ef8169047e68e376dcda1bd7fbe && \
+	make install
 
 COPY scripts/getlogs.sh /usr/bin/getlogs
 
