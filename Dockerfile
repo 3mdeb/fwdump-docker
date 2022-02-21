@@ -70,7 +70,7 @@ WORKDIR /home/fwdump
 
 RUN git clone https://review.coreboot.org/coreboot.git && \
 	cd /home/fwdump/coreboot && \
-	git checkout c004ae565609d61dd1de739953f64060c2350fb3
+	git checkout 8ac40f3ea71fe9087ead28fa3a571f6248e4d74c
 
 RUN git clone https://github.com/flashrom/flashrom.git
 
