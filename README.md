@@ -1,6 +1,6 @@
 # fwdump-docker
 
-[![Build Status](https://travis-ci.com/3mdeb/fwdump-docker.svg?branch=master)](https://travis-ci.com/3mdeb/fwdump-docker)
+![Build status](https://github.com/3mdeb/fwdump-docker/actions/workflows/build.yml/badge.svg)
 
 Dockerized utility for retrieving various firmware related information from computers.
 
