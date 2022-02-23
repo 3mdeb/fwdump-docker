@@ -70,7 +70,7 @@ WORKDIR /home/fwdump
 
 RUN git clone https://review.coreboot.org/coreboot.git && \
 	cd /home/fwdump/coreboot && \
-	git checkout c004ae565609d61dd1de739953f64060c2350fb3
+	git checkout 8ac40f3ea71fe9087ead28fa3a571f6248e4d74c
 
 RUN git clone https://github.com/flashrom/flashrom.git
 
@@ -93,9 +93,10 @@ RUN cd /home/fwdump/coreboot/util/nvramtool && \
 RUN cd /home/fwdump/coreboot/util/intelp2m && \
 	make && cp intelp2m /usr/local/sbin/
 
+# flashrom with Tiger Lake support
 RUN cd /home/fwdump/flashrom && \
-	git checkout v1.2 && \
-	make install 
+	git checkout 93b01904db607ef8169047e68e376dcda1bd7fbe && \
+	make install
 
 COPY scripts/getlogs.sh /usr/bin/getlogs
 
