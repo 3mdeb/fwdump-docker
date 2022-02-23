@@ -33,13 +33,11 @@ jobs:
         uses: docker/build-push-action@v2
         if: github.event_name != 'create' && !contains(github.ref, 'refs/tags/')
         with:
-          context: .
           push: false
       -
         name: Build and push
         uses: docker/build-push-action@v2
         if: github.event_name == 'create' && contains(github.ref, 'refs/tags/')
         with:
-          context: .
           push: true
           tags: '3mdeb/fwdump-docker:${{github.ref_name}}'
