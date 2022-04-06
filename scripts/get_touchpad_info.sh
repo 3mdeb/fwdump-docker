@@ -10,20 +10,27 @@ fi
 echo "Kernel log:"
 dmesg
 
-echo "Installing dependencies"
-apt-get update
-apt-get install -y i2c-tools acpi-call-dkms 
-
 echo "running i2cdetect (quick write mode)"
 i2cdetect -y -q 1
 
 echo "running i2cdetect (receive byte mode)"
 i2cdetect -y -r 1
 
+dmesg | grep hid-generic | grep "I2C HID" > /dev/null
+if [ $? -ne 0 ]; then
+	echo "No I2C touchpads detected. Exiting"
+	exit
+fi
+
+devpath=$(dmesg | grep hid-generic | grep "I2C HID" | awk '{print $4}' | cut -d ':' -f 1-3)
+
+echo "Installing dependencies"
+apt-get update
+apt-get install -y i2c-tools acpi-call-dkms
+
 echo "Loading module acpi_call"
 modprobe acpi_call
 
-devpath=$(dmesg | grep hid-generic | awk '{print $4}' | cut -d ':' -f 1-3)
 devname=$(dmesg | grep hid-generic | awk 'NF>1{print $NF}')
 hid=$(cat /sys/bus/i2c/devices/$devname/firmware_node/hid)
 path=$(cat /sys/bus/i2c/devices/$devname/firmware_node/path)
